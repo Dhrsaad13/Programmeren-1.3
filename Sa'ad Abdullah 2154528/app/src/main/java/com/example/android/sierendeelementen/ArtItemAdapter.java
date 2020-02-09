@@ -55,7 +55,7 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
         Log.v(TAG, "++++ onBindViewHolder-type: " + holder.getClass().getSimpleName());
         ArtItem item = mArtItems.get(position);
 
-        holder.image.setImageResource(item.getImgResourceId());
+        //holder.image.setImageResource(DUNNO);
         holder.name.setText(item.getTitle());
         holder.id.setText(item.getIdentificationNumber());
         holder.geoLocation.setText(item.getGeoLocation());

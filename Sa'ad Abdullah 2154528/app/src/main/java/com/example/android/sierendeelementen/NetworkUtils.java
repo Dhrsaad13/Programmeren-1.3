@@ -15,10 +15,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class NetworkUtils extends AsyncTask<String, Void, String> {
-    private TextView textView;
+    private String result;
 
-    public NetworkUtils(TextView textView) {
-        this.textView = textView;
+    public NetworkUtils(String result) {
+        this.result = result;
 
     }
 
@@ -52,8 +52,8 @@ public class NetworkUtils extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String product) {
-        textView.setText("Current Product: " + product);
+    protected void onPostExecute(String json) {
+        result = json;
     }
 
 }

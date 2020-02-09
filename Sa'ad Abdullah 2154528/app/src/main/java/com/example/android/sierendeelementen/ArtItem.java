@@ -9,10 +9,10 @@ public class ArtItem {
     private String description;
     private String surface;
     private String dateOfPlacement;
-    private int imgResourceId;
+    private String imgUrl;
     private String geoLocation;
 
-    public ArtItem(int objectID, String identificationNumber, String title, String artist, String material, String description, String surface, String dateOfPlacement, int imgResourceId, String geoLocation){
+    public ArtItem(int objectID, String identificationNumber, String title, String artist, String material, String description, String surface, String dateOfPlacement, String imgUrl, String geoLocation){
         this.objectID = objectID;
         this.identificationNumber = identificationNumber;
         this.title = title;
@@ -21,7 +21,7 @@ public class ArtItem {
         this.description = description;
         this.surface = surface;
         this.dateOfPlacement = dateOfPlacement;
-        this.imgResourceId = imgResourceId;
+        this.imgUrl = imgUrl;
         this.geoLocation = geoLocation;
     }
 
@@ -57,8 +57,8 @@ public class ArtItem {
         return dateOfPlacement;
     }
 
-    public int getImgResourceId() {
-        return imgResourceId;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
     public String getGeoLocation(){
