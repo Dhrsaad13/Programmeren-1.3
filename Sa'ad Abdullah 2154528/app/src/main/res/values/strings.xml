@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sierende Elementen</string>
+    <string name="beschrijving_string">Beschrhijving:  </string>
+    <string name="matriaal_string">Matriaal:  </string>
+    <string name="ondergrond_string">Ondergrond:  </string>
+    <string name="plaatsdatum_string">Plaatsings Datum:  </string>
+
+
+    <string name="kunstenaar_string">Kunstenaar:  </string>
 </resources>
