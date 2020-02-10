@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHolder> {
@@ -33,9 +35,9 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
     @Override
     public ArtItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-class: " + viewGroup.getClass().getSimpleName());
-        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceName: " + viewGroup.getContext().getResources().getResourceName(viewGroup.getId()));
-        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceEntryName: " + viewGroup.getContext().getResources().getResourceEntryName(viewGroup.getId()));
+//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-class: " + viewGroup.getClass().getSimpleName());
+//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceName: " + viewGroup.getContext().getResources().getResourceName(viewGroup.getId()));
+//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceEntryName: " + viewGroup.getContext().getResources().getResourceEntryName(viewGroup.getId()));
 
         Context context = viewGroup.getContext();
         LayoutInflater inflator = LayoutInflater.from(context);
@@ -52,13 +54,15 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - gets element from your dataset at this position
         // - replaces the contents of the view with that element
-        Log.v(TAG, "++++ onBindViewHolder-type: " + holder.getClass().getSimpleName());
+        Log.v(TAG, "++++ onBindViewHolder: pos = " + position);
         ArtItem item = mArtItems.get(position);
+//        Log.v(TAG, item.getImgUrl() + " " + item.getTitle());
 
-        //holder.image.setImageResource(DUNNO);
         holder.name.setText(item.getTitle());
         holder.id.setText(item.getIdentificationNumber());
         holder.geoLocation.setText(item.getGeoLocation());
+
+        Picasso.get().load(item.getImgUrl()).into(holder.image);
     }
 
     // Return the size of our dataset (invoked by the layout manager)
@@ -78,6 +82,7 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
 
         public ViewHolder(View listItemView) {
             super(listItemView);
+
             image = (ImageView) listItemView.findViewById(R.id.imageView);
             name = (TextView) listItemView.findViewById(R.id.textView);
             id = (TextView) listItemView.findViewById(R.id.textView6);

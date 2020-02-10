@@ -37,12 +37,12 @@ public class NetworkingTask extends AsyncTask<String, Void, ArrayList<ArtItem>> 
         String response = null;
 
         response = doSendRequestToAPI(url);
+        Log.i(TAG, "response = " + response);
 
         ArrayList<ArtItem> artItems = createItemsFromJson(response);
+        Log.i(TAG, "num items = " + artItems.size());
 
-        Log.i(TAG, "response = " + response);
         Log.i(TAG, "doInBackground finished");
-
         return artItems;
     }
 
