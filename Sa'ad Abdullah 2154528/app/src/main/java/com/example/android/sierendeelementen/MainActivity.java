@@ -40,7 +40,8 @@ public class MainActivity
         //connect it to a layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
+        mAdapter = new ArtItemAdapter(allArtItems);
+        mRecyclerView.setAdapter(mAdapter);
 
         NetworkingTask networkingTask = new NetworkingTask(this);
         networkingTask.execute(apiUrl);
@@ -59,19 +60,9 @@ public class MainActivity
 
     @Override
     public void onItemAvailable(ArrayList<ArtItem> artItems) {
-        Log.i(TAG, "items = " + artItems.toString());
+        Log.i(TAG, "onItemAvailable: num = " + artItems.size());
 
-        /*ArtItem i = artItems.get(0);
-
-        String itemAsText = new StringBuilder(i.getTitle())
-                .append(" ")
-                .append(i.getObjectID())
-                .append(" ")
-                .append(i.getArtist())
-                .toString();
-
-        this.outputText.setText(itemAsText);*/
-
+        allArtItems.clear();
         allArtItems.addAll(artItems);
 
         ArtItemAdapter adapter = new ArtItemAdapter(allArtItems);
