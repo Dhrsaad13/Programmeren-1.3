@@ -1,6 +1,7 @@
 package com.example.android.sierendeelementen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +20,11 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
     private static final String TAG = ArtItem.class.getSimpleName();
 
     private List<ArtItem> mArtItems;
-    //private final DrinkOnClickHandler mDrinkClickHandler;
+    private ArtItemClickListener mArtItemClickListener;
 
-    public ArtItemAdapter(List<ArtItem> artItems/*, DrinkOnClickHandler mDrinkClickHandler*/) {
+    public ArtItemAdapter(List<ArtItem> artItems, ArtItemClickListener mArtItemClickListener) {
         this.mArtItems = artItems;
-        //this.mDrinkClickHandler = mDrinkClickHandler;
+        this.mArtItemClickListener = mArtItemClickListener;
     }
 
     public void setmArtItems(List<ArtItem> artItems) {
@@ -35,9 +36,9 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
     @Override
     public ArtItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-class: " + viewGroup.getClass().getSimpleName());
-//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceName: " + viewGroup.getContext().getResources().getResourceName(viewGroup.getId()));
-//        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceEntryName: " + viewGroup.getContext().getResources().getResourceEntryName(viewGroup.getId()));
+        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-class: " + viewGroup.getClass().getSimpleName());
+        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceName: " + viewGroup.getContext().getResources().getResourceName(viewGroup.getId()));
+        Log.v(TAG, "++++++++ onCreateViewHolder - viewGroup-resourceEntryName: " + viewGroup.getContext().getResources().getResourceEntryName(viewGroup.getId()));
 
         Context context = viewGroup.getContext();
         LayoutInflater inflator = LayoutInflater.from(context);
@@ -92,15 +93,30 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
             name.setOnClickListener(this);
             geoLocation.setOnClickListener(this);
             geoLocation.setOnClickListener(this);
+
+
+
             listItemView.setOnClickListener(this);
         }
 
         // To be implemented: go to item detail page
         @Override
         public void onClick(View view) {
+
             int itemIndex = getAdapterPosition();
+            Log.v(TAG, "Item has been clicked on position " + itemIndex);
+            mArtItemClickListener.onArtItemClick(itemIndex);
+
             //mDrinkClickHandler.onDrinkClick(view, itemIndex);
+//            Intent intent = new Intent(view.getContext(), ContentActivity.class);
+//            intent.putExtra("position", itemIndex);
+//            startActivity(intent);
+
+
         }
+    }
+    public interface ArtItemClickListener {
+        void onArtItemClick(int position);
     }
 
 }

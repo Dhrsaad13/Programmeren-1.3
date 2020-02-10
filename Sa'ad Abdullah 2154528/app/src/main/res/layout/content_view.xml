@@ -10,22 +10,23 @@
         android:layout_height="match_parent">
 
         <TextView
+            
             android:id="@+id/titel_id"
             android:layout_width="265dp"
             android:layout_height="26dp"
-            android:text="Textview"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.188"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.072" />
+            app:layout_constraintVertical_bias="0.072"
+
+            />
 
         <TextView
             android:id="@+id/geo_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.106"
@@ -37,7 +38,6 @@
             android:id="@+id/kunstenaar_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -49,7 +49,6 @@
             android:id="@+id/beschrijving_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -61,7 +60,6 @@
             android:id="@+id/matriaal_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -73,7 +71,6 @@
             android:id="@+id/ondergrond_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -85,7 +82,6 @@
             android:id="@+id/plaatsingsdatum_id"
             android:layout_width="157dp"
             android:layout_height="22dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -152,7 +148,7 @@
             app:layout_constraintVertical_bias="0.796" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/item_img"
             android:layout_width="235dp"
             android:layout_height="169dp"
             app:layout_constraintBottom_toBottomOf="parent"

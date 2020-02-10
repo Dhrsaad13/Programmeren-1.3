@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class MainActivity
         extends AppCompatActivity
-        implements View.OnClickListener, NetworkingTask.OnItemApiListener  {
+        implements View.OnClickListener, NetworkingTask.OnItemApiListener, ArtItemAdapter.ArtItemClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
     private final String apiUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
@@ -23,8 +24,8 @@ public class MainActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<ArtItem> allArtItems = new ArrayList<>();
-    ArtItemAdapter adapter = new ArtItemAdapter(allArtItems);
+    private ArrayList<ArtItem> allArtItems = new ArrayList<>();
+    ArtItemAdapter adapter = new ArtItemAdapter(allArtItems, this);
 
 
     @Override
@@ -40,7 +41,7 @@ public class MainActivity
         //connect it to a layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ArtItemAdapter(allArtItems);
+        mAdapter = new ArtItemAdapter(allArtItems, this);
         mRecyclerView.setAdapter(mAdapter);
 
         NetworkingTask networkingTask = new NetworkingTask(this);
@@ -50,6 +51,7 @@ public class MainActivity
     @Override
     public void onClick(View view) {
         Log.i(TAG, "onClick is called.");
+
 
        // String url = "https://randomuser.me/api?results=5";
 
@@ -65,7 +67,7 @@ public class MainActivity
         allArtItems.clear();
         allArtItems.addAll(artItems);
 
-        ArtItemAdapter adapter = new ArtItemAdapter(allArtItems);
+        ArtItemAdapter adapter = new ArtItemAdapter(allArtItems, this);
 
         int itemcount = adapter.getItemCount();
 
@@ -76,6 +78,16 @@ public class MainActivity
 
         mRecyclerView.setAdapter(adapter);
     }
+    public  void switchActivity(Intent intent){
 
+}
+
+    @Override
+    public void onArtItemClick(int position) {
+        Log.d(TAG, "onListItemClick was called - got index " + position);
+        Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+        intent.putExtra("ARTITEM", allArtItems.get(position));
+        startActivity(intent);
+    }
 }
 

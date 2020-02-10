@@ -1,6 +1,8 @@
 package com.example.android.sierendeelementen;
 
-public class ArtItem {
+import java.io.Serializable;
+
+public class ArtItem implements Serializable {
     private int objectID;
     private String identificationNumber;
     private String title;
