@@ -17,12 +17,12 @@ public class MainActivity
         implements View.OnClickListener, NetworkingTask.OnItemApiListener  {
 
     private final String TAG = this.getClass().getSimpleName();
-    private final String apiUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=GEOGRAFISCHELIGGING,AANDUIDINGOBJECT,URL,IDENTIFICATIE,OBJECTID&outSR=4326&f=json";
+    private final String apiUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<ArtItem> allArtItems;
+    private List<ArtItem> allArtItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +36,18 @@ public class MainActivity
         //connect it to a layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        //List<ArtItem> drinkList = Arrays.asList(Drink.drinks);
+        NetworkingTask networkingTask = new NetworkingTask(this);
+        networkingTask.execute(apiUrl);
     }
 
     @Override
     public void onClick(View view) {
         Log.i(TAG, "onClick is called.");
 
-        String url = "https://randomuser.me/api?results=5";
+       // String url = "https://randomuser.me/api?results=5";
 
-        //NetworkingTask networkingTask = new NetworkingTask(this);
-        //networkingTask.execute(url);
+       // NetworkingTask networkingTask = new NetworkingTask(this);
+       // networkingTask.execute(url);
 
     }
 
@@ -66,8 +66,10 @@ public class MainActivity
 
         this.outputText.setText(itemAsText);*/
 
+        allArtItems.addAll(artItems);
 
-        mAdapter = new ArtItemAdapter(artItems);
-        mRecyclerView.setAdapter(mAdapter);
+        ArtItemAdapter adapter = new ArtItemAdapter(allArtItems);
+
+        mRecyclerView.setAdapter(adapter);
     }
 }

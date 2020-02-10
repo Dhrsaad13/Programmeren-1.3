@@ -22,6 +22,8 @@ public class NetworkingTask extends AsyncTask<String, Void, ArrayList<ArtItem>> 
     private OnItemApiListener listener;
 
     public NetworkingTask(OnItemApiListener listener) {
+        Log.i(TAG, "Constructor of NetworkingTask called");
+
         this.listener = listener;
     }
 
@@ -33,7 +35,9 @@ public class NetworkingTask extends AsyncTask<String, Void, ArrayList<ArtItem>> 
         Log.i(TAG, "inputParams = " + url);
 
         String response = null;
-       // response = doSendRequestToAPI(url);
+
+        response = doSendRequestToAPI(url);
+
         ArrayList<ArtItem> artItems = createItemsFromJson(response);
 
         Log.i(TAG, "response = " + response);
