@@ -92,10 +92,7 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
             image.setOnClickListener(this);
             name.setOnClickListener(this);
             geoLocation.setOnClickListener(this);
-            geoLocation.setOnClickListener(this);
-
-
-
+            id.setOnClickListener(this);
             listItemView.setOnClickListener(this);
         }
 

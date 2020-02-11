@@ -33,7 +33,6 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //obtain a handle to the object
         mRecyclerView = findViewById(R.id.recyclerView);
         // use a linear layout manager
@@ -51,12 +50,6 @@ public class MainActivity
     @Override
     public void onClick(View view) {
         Log.i(TAG, "onClick is called.");
-
-
-       // String url = "https://randomuser.me/api?results=5";
-
-       // NetworkingTask networkingTask = new NetworkingTask(this);
-       // networkingTask.execute(url);
 
     }
 
