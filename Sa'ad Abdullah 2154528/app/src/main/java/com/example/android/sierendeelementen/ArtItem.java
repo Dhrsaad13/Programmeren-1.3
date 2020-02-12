@@ -27,6 +27,7 @@ public class ArtItem implements Serializable {
         this.geoLocation = geoLocation;
     }
 
+//    Getters voor de attributen van de art object
     public int getObjectID() {
         return objectID;
     }
