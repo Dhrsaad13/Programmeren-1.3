@@ -16,23 +16,24 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHolder> {
-//      Tag voor logging
     private static final String TAG = ArtItem.class.getSimpleName();
-//    Iniatilieren van de List item en de OnlclickListener
+
     private List<ArtItem> mArtItems;
     private ArtItemClickListener mArtItemClickListener;
-// Constructor voor de adapter
+
     public ArtItemAdapter(List<ArtItem> artItems, ArtItemClickListener mArtItemClickListener) {
         this.mArtItems = artItems;
         this.mArtItemClickListener = mArtItemClickListener;
     }
-// Methode om de lijsten aan elkaar te koppelen
+
     public void setmArtItems(List<ArtItem> artItems) {
+        Log.v(TAG, "setmArtItems called.");
+
         mArtItems = artItems;
         notifyDataSetChanged();
     }
 
-    // onCreateViewHolder creates new views.
+    // onCreateViewHolder creates new views. (invoked by the layout manager)
     @Override
     public ArtItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
@@ -63,12 +64,12 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
         holder.geoLocation.setText(item.getGeoLocation());
 
         Picasso.get().load(item.getImgUrl()).into(holder.image);
-        Log.v(TAG, "Piccasso loaded");
     }
 
-    // Return the size of our dataset (invoked by the layout manager)
+    // Return the size of our dataset
     @Override
     public int getItemCount() {
+        Log.v(TAG, "getItemCount() called.");
         return mArtItems.size();
     }
 
@@ -83,12 +84,13 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
 
         public ViewHolder(View listItemView) {
             super(listItemView);
-//          Connecting the created view's to the views in the xml layout
+
+            // Connecting the created attributes to the views in the xml layout.
             image = (ImageView) listItemView.findViewById(R.id.imageView);
             name = (TextView) listItemView.findViewById(R.id.textView);
             id = (TextView) listItemView.findViewById(R.id.textView6);
             geoLocation = (TextView) listItemView.findViewById(R.id.textView5);
-//            Setting onclick listner voor the view's
+
             image.setOnClickListener(this);
             name.setOnClickListener(this);
             geoLocation.setOnClickListener(this);
@@ -96,20 +98,18 @@ public class ArtItemAdapter extends RecyclerView.Adapter<ArtItemAdapter.ViewHold
             listItemView.setOnClickListener(this);
         }
 
-        // To be implemented: go to item detail page
         @Override
         public void onClick(View view) {
-//            Method for on click on a item, sends out the item position
+            // Method for on click on a item, sends the item index to the listener.
             int itemIndex = getAdapterPosition();
+
             Log.v(TAG, "Item has been clicked on position " + itemIndex);
+
             mArtItemClickListener.onArtItemClick(itemIndex);
-
-
-
-
         }
     }
-//    Interface for the clicklistner
+
+    //    Interface for the clicklistener
     public interface ArtItemClickListener {
         void onArtItemClick(int position);
     }
