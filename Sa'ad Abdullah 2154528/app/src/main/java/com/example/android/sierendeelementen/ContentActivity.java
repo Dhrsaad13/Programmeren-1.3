@@ -17,13 +17,14 @@ public class ContentActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_view);
+//        Getting the intent from the previous activity and extras out of the intent
        Intent intent = getIntent();
        Bundle extras = getIntent().getExtras();
-
+//        Extracting ArtItem object out of the extra's
          ArtItem item = (ArtItem) extras.getSerializable("ARTITEM");
 
 
-
+//        Using getters to get the variables for the Activity
          String title = item.getTitle();
          String artist = item.getArtist();
          String material = item.getArtist();
@@ -32,7 +33,7 @@ public class ContentActivity extends AppCompatActivity {
          String dateOfPlacement = item.getSurface();
          String imgUrl = item.getImgUrl();
          String geoLocation = item.getGeoLocation();
-
+//       Initaliasing the activity view's
         TextView view_title = findViewById(R.id.titel_id);
         TextView view_artist = findViewById(R.id.kunstenaar_id);
         TextView view_material = findViewById(R.id.matriaal_id);
@@ -42,7 +43,7 @@ public class ContentActivity extends AppCompatActivity {
         TextView view_Geolocatie = findViewById(R.id.geo_id);
 
 
-
+//      Setting the text out of the art item for the view's
         view_artist.setText(artist);
         view_dateOfPlacement.setText(dateOfPlacement);
         view_title.setText(title);
@@ -52,7 +53,7 @@ public class ContentActivity extends AppCompatActivity {
         view_Geolocatie.setText(geoLocation);
 
 
-
+//            Using picasso to get an image for the view
         ImageView img = findViewById(R.id.item_img);
 
         Picasso.get().load(imgUrl).into(img);
